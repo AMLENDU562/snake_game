@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 from turtle import *
 import random
 import time
@@ -39,49 +38,11 @@ while game_is_on:
         y_axis=segments[segment-1].ycor()
         segments[segment].goto((x_axis,y_axis))
     segments[0].forward(20)
-    screen.listen()
-    screen.onkey(key="a",fun=mov_left)
-    screen.onkey(key="d",fun=mov_right)
 
+screen.listen()
+screen.onkey("a",mov_left)
+screen.onkey("d",mov_right)
 screen.exitonclick()
 
 
 
-=======
-from turtle import *
-import random
-import time
-
-
-screen=Screen()
-
-screen.title("My Snake Game")
-screen.setup(width=600,height=600)
-screen.bgcolor("black")
-
-
-starting_position=[(0,0),(-20,0),(-40,0)]
-
-segments=[]
-screen.tracer(0)
-
-for i in starting_position:
-    snake=Turtle("square")
-    snake.color("white")
-    snake.penup()
-    snake.goto(i)
-    segments.append(snake)
-
-game_is_on=True
-
-while game_is_on:
-    screen.update()
-    time.sleep(0.1)
-
-    for segment in segments:
-        segment.forward(20)
-screen.exitonclick()
-
-
-
->>>>>>> 0aa7bc2ce1968f51bf9ab0c6c7bb6e0009b95c45
