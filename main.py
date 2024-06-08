@@ -57,7 +57,10 @@ snake=Snake()
 
 screen.listen()
 
-
+screen.onkey(snake.Up,"Up")
+screen.onkey(snake.down,"Down")
+screen.onkey(snake.left,"Left")
+screen.onkey(snake.right,"Right")
 
 while game_on:
     screen.update()
