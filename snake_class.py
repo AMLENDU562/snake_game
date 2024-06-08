@@ -1,16 +1,41 @@
 from turtle import *
-import time
+
+
+starting_position=[(0,0),(-20,0),(-40,0)]
 
 class Snake:
-    def mov():
-        while game_is_on:
-    screen.update()
-    time.sleep(0.1)
-    for segment in range(len(segments)-1,0,-1):
-        x_axis=segments[segment-1].xcor()
-        y_axis=segments[segment-1].ycor()
-        segments[segment].goto((x_axis,y_axis))
-    segments[0].forward(20)
-    screen.listen()
-    screen.onkey(key="a",fun=mov_left)
-    screen.onkey(key="d",fun=mov_right)
+    
+    def __init__(self):
+        self.segments=[]
+        self.create_snake()    
+
+
+
+
+    def create_snake(self):
+        for i in starting_position:
+            snake=Turtle("square")
+            snake.color("white")
+            snake.penup()
+            snake.goto(i)
+            self.segments.append(snake)
+
+
+    
+
+
+        
+    
+    
+
+
+    
+    def mov(self):
+        for segment in range(len(self.segments)-1,0,-1):
+            x_axis=self.segments[segment-1].xcor()
+            y_axis=self.segments[segment-1].ycor()
+            self.segments[segment].goto((x_axis,y_axis))
+        self.segments[0].forward(20)
+    
+
+            
