@@ -1,2 +1,1 @@
-# screen.onkey("a",mov_left)
-# screen.onkey("d",mov_right)
+            game_over.write(f"Game Over!! Your score {score.score}",True,align="center",font=('Arial', 20, 'normal'))

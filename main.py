@@ -44,7 +44,8 @@ import time
 # screen.exitonclick()
 
 from snake_class import Snake
-
+from Food_Allocate import Food 
+from Score_card import Scorecard
 screen=Screen()
 
 screen.title("My Snake Game")
@@ -54,6 +55,8 @@ screen.tracer(0)
 
 game_on=True
 snake=Snake()
+food=Food()
+score=Scorecard()
 
 screen.listen()
 
@@ -66,4 +69,29 @@ while game_on:
     screen.update()
     time.sleep(0.1)
     snake.mov()
+
+    if(snake.head.distance(food)<15):
+        snake.extend()
+        score.increase_score()
+        score
+        food.refresh()
+    if(snake.head.xcor()>280 or snake.head.ycor()>280 or snake.head.xcor()<(-280) or snake.head.ycor()<(-280)):
+        game_on=False
+        game_over=Scorecard()
+        game_over.clear()
+        game_over.goto((0,0))
+        game_over.color("blue")
+        game_over.write(f"Game Over!! Your score {score.score}",True,align="center",font=('Arial', 20, 'normal'))
+
+    for i in range(1,len(snake.segments)):
+        if(snake.head.distance(snake.segments[i])<10):
+            game_on=False
+            game_over=Scorecard()
+            game_over.clear()
+            game_over.goto((0,0))
+            game_over.color("blue")
+            game_over.write(f"Game Over!! Your score {score.score}",True,align="center",font=('Arial', 20, 'normal'))
+
+
+
 screen.exitonclick()
