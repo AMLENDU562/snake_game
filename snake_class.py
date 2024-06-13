@@ -1,6 +1,5 @@
 from turtle import *
 
-
 starting_position=[(0,0),(-20,0),(-40,0)]
 
 class Snake:
@@ -10,8 +9,6 @@ class Snake:
         self.create_snake()    
         self.head=self.segments[0]
 
-
-
     def create_snake(self):
         for i in starting_position:
             snake=Turtle("square")
@@ -19,46 +16,46 @@ class Snake:
             snake.penup()
             snake.goto(i)
             self.segments.append(snake)
-
-
     
+    def reset(self):
+        for segment in self.segments:
+            segment.goto(1000, 1000)  # Move segments out of the screen
+        self.segments.clear()
+        self.create_snake()
+        self.head=self.segments[0]
 
     def left(self):
-        if(self.segments[0].heading()!=0):
-            curr_heading=self.segments[0].heading()
-            self.segments[0].setheading(180)
+        if self.head.heading() != 0:
+            self.head.setheading(180)
 
-    def Up(self):
-        if(self.segments[0].heading()!=270):
-            curr_heading=self.segments[0].heading()
-            self.segments[0].setheading(90)
+    def up(self):
+        if self.head.heading() != 270:
+            self.head.setheading(90)
+
     def right(self):
-        if(self.segments[0].heading()!=180):
-            curr_heading=self.segments[0].heading()
-            self.segments[0].setheading(0)
+        if self.head.heading() != 180:
+            self.head.setheading(0)
+
     def down(self):
-        if(self.segments[0].heading()!=90):
-            curr_heading=self.segments[0].heading()
-            self.segments[0].setheading(270)
-    def add_segment(self,position):
+        if self.head.heading() != 90:
+            self.head.setheading(270)
+
+    def add_segment(self, position):
         snake=Turtle("square")
         snake.color("white")
         snake.penup()
         snake.goto(position)
         self.segments.append(snake)
-    def Game_Over(self):
-        return self.segments[len(self.segments)-1].distance(self.head)<15
+
+    def game_over(self):
+        return self.segments[-1].distance(self.head) < 15
     
     def extend(self):
         self.add_segment(self.segments[-1].position())
-    def mov(self):
-        for segment in range(len(self.segments)-1,0,-1):
-            x_axis=self.segments[segment-1].xcor()
-            y_axis=self.segments[segment-1].ycor()
-            self.segments[segment].goto((x_axis,y_axis))
-        self.segments[0].forward(20)
-
     
-    
-
-            
+    def move(self):
+        for segment in range(len(self.segments) - 1, 0, -1):
+            x_axis = self.segments[segment - 1].xcor()
+            y_axis = self.segments[segment - 1].ycor()
+            self.segments[segment].goto(x_axis, y_axis)
+        self.head.forward(20)
